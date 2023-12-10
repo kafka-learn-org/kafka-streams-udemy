@@ -38,7 +38,8 @@ public class WordCountApp {
         // 1 - stream from Kafka
 
         KStream<String, String> textLines = builder.stream("word-count-input");
-        KTable<String, Long> wordCounts = textLines
+//        KTable<String, Long>
+        KTable<String, String> wordCounts = textLines
                 // 2 - map values to lowercase
                 .mapValues(textLine -> textLine.toLowerCase())
                 // can be alternatively written as:
@@ -51,14 +52,14 @@ public class WordCountApp {
                 .groupByKey()
                 // 6 - count occurrences
 //                .count(Named.as("Counts"));
-                .count(Named.as("Counts"));
+                .count(Named.as("Counts")).mapValues(String::valueOf);
 
 
         // 7 - to in order to write the results back to kafka
 //        wordCounts.to(Serdes.String(), Serdes.Long(), "word-count-output");
         String outputTopic = "outputTopic";
         wordCounts.toStream()
-                .to(outputTopic, Produced.with(Serdes.String(), Serdes.Long()));
+                .to(outputTopic, Produced.with(Serdes.String(), Serdes.String()));
 
         KafkaStreams streams = new KafkaStreams(builder.build(), config);
         streams.start();
