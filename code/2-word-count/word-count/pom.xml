@@ -32,6 +32,13 @@
             <version>3.6.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-streams-test-utils</artifactId>
+            <version>3.6.1</version>
+            <scope>test</scope>
+        </dependency>
+
         <!--for logging purposes-->
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>

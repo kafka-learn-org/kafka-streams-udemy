@@ -27,9 +27,9 @@ public class WordCountApp {
         config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
-        Path stateDirectory = Files.createTempDirectory("kafka-streams");
-        config.put(
-                StreamsConfig.STATE_DIR_CONFIG, stateDirectory.toAbsolutePath().toString());
+//        Path stateDirectory = Files.createTempDirectory("kafka-streams");
+//        config.put(
+//                StreamsConfig.STATE_DIR_CONFIG, stateDirectory.toAbsolutePath().toString());
 
 
         StreamsBuilder builder = new StreamsBuilder();
@@ -52,6 +52,7 @@ public class WordCountApp {
                 // 6 - count occurrences
 //                .count(Named.as("Counts"));
                 .count(Named.as("Counts"));
+
 
         // 7 - to in order to write the results back to kafka
 //        wordCounts.to(Serdes.String(), Serdes.Long(), "word-count-output");
