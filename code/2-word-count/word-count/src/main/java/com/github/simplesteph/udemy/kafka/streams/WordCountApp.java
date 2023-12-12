@@ -12,6 +12,7 @@ import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
+import org.apache.kafka.streams.kstream.KGroupedStream;
 import org.apache.kafka.streams.kstream.KStream;
 //import org.apache.kafka.streams.kstream.KStreamBuilder;
 import org.apache.kafka.streams.kstream.KTable;
@@ -38,6 +39,8 @@ public class WordCountApp {
         // 1 - stream from Kafka
 
         KStream<String, String> textLines = builder.stream("word-count-input");
+
+
 //        KTable<String, Long>
         KTable<String, String> wordCounts = textLines
                 // 2 - map values to lowercase
