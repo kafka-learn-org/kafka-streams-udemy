@@ -55,7 +55,8 @@ public class WordCountApp {
                 .groupByKey()
                 // 6 - count occurrences
 //                .count(Named.as("Counts"));
-                .count(Named.as("Counts")).mapValues(String::valueOf);
+                .count(Named.as("Counts"))
+                .mapValues(String::valueOf);
 
 
         // 7 - to in order to write the results back to kafka
